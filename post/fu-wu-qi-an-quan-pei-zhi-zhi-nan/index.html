@@ -1,102 +1,110 @@
-
-<!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
-
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>服务器安全配置指南 | Brick713 的小黑屋</title>
-<meta name="description" content="May The Force Be With You">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
+<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1558543159135">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1558542787363">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://brick713.github.io/styles/main.css">
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
 
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://brick713.github.io">
-        <img class="avatar" src="https://brick713.github.io/images/avatar.png?v=1558542787363" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://brick713.github.io">
-        <h1 class="site-title">Brick713 的小黑屋</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://brick713.github.io">
+  <img class="avatar" src="https://brick713.github.io/images/avatar.png?v=1558543159135" alt="">
+  </a>
+  <h1 class="site-title">
+    Brick713 的小黑屋
+  </h1>
+  <p class="site-description">
+    May The Force Be With You
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="https://brick713.github.io/post/about/" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/brick713" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/YuppiesBrick" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+        <a href="https://weibo.com/brick123" target="_blank">
+          <i class="fab fa-weibo"></i>
+        </a>
+      
+    
+      
+        <a href="https://www.zhihu.com/people/Brick713" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+      
+    
   </div>
 </div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="https://brick713.github.io/post/about/" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
 
-
-      <div class="content-container">
         <div class="post-detail">
-          
-          <h2 class="post-title">服务器安全配置指南</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2015-06-15</span>
+          <article class="post">
+            <h2 class="post-title">
+              服务器安全配置指南
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2015-06-15 ·
+              </time>
+              
+                <a href="https://brick713.github.io/tag/5rHXmzHGA" class="post-tag">
+                  # 安全总结
+                </a>
+              
+            </div>
             
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://brick713.github.io/tag/5rHXmzHGA">
-                    安全总结
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <!-- more -->
+            <div class="post-content">
+              <!-- more -->
 <h1 id="安全配置小记">安全配置小记</h1>
 <p>最近接触到要配置服务器安全，所有上网查了一堆关于服务器配置的内容，收益最大的还是<strong>Wooyun</strong>的两篇关于Nginx和Apache的安全配置的文章，这里综合自己的查找的内容作了一点总结，方便自己以后配置服务器。</p>
 <p>下面就讲述下一些相关的安全配置。</p>
@@ -283,57 +291,33 @@ Allow from 192.168.1.111<br>
 <p>7.配置nginx.conf禁止访问的文件夹，如后台，或者限制访问ip（可选）</p>
 <p>8.配置nginx.conf禁止访问的文件类型，如一些txt日志文件（可选）</p>
 
-          </div>
+            </div>
+          </article>
         </div>
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://brick713.github.io/post/ubuntu-server-pei-zhi-zhi-nan">
+            <div class="next">下一篇</div>
+            <a href="https://brick713.github.io/post/ubuntu-server-pei-zhi-zhi-nan">
               <h3 class="post-title">
-                下一篇：Ubuntu Server 配置指南
+                Ubuntu Server 配置指南
               </h3>
             </a>
           </div>
-          
-      </div>
+        
 
-      
+        
 
-      <div class="site-footer">
-  <div class="slogan">May The Force Be With You</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://brick713.github.io/atom.xml" target="_blank">RSS</a>
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://brick713.github.io/atom.xml" target="_blank">RSS</a>
 </div>
 
-
-    </div>
-    <script type="application/javascript">
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
-
-
-
+      </div>
+    </div>
   </body>
 </html>
