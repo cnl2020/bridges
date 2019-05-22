@@ -1,0 +1,144 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>移动端安全修炼（二） | Brick713 的小黑屋</title>
+<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1558538027023">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://brick713.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://brick713.github.io">
+  <img class="avatar" src="https://brick713.github.io/images/avatar.png?v=1558538027023" alt="">
+  </a>
+  <h1 class="site-title">
+    Brick713 的小黑屋
+  </h1>
+  <p class="site-description">
+    May The Force Be With You
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              移动端安全修炼（二）
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2017-10-15 ·
+              </time>
+              
+                <a href="https://brick713.github.io/tag/RXGWrzC76" class="post-tag">
+                  # 移动端安全
+                </a>
+              
+            </div>
+            
+            <div class="post-content">
+              <!-- more -->
+<h2 id="前因">前因</h2>
+<p>iOS针对IAP有一个保护机制，如果使用了全局代理的方式，iOS检查到之后为了保障交易的安全性，将会拒绝IAP流程，所以是无法抓取交易数据的，以豆瓣阅读为例，未开启代理时，可以正常的进入IAP充值界面，开启代理后则会报错：</p>
+<p><img src="https://i.loli.net/2018/06/27/5b33606b4fbff.jpeg" alt="使用全局代理充值请求报错"></p>
+<p>但是如果使用的动态代理的模式，可以绕过iOS的检查机制，下面就介绍下具体方法（PS：在这之前，默认你已经按之前的方法将证书倒入了iPhone设备中，教程地址：<a href="http://www.shaojike.com/2017/06/20/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%AE%89%E5%85%A81/">移动端安全修炼（一）</a>）。
+这里需要补充一点，新版的iOS在信任证书环节需要新增一个信任，否则无法完全抓取HTTPS数据，具体位置在「设置」—「关于手机」—「信任证书设置」，如图所示：</p>
+<p><img src="https://i.loli.net/2018/06/27/5b33606b44c5b.jpeg" alt="二次信任证书位置"></p>
+<h2 id="方法">方法</h2>
+<p>先准备一个PAC文件（PAC，一个自动代理配置脚本，包含了很多使用 JavaScript 编写的规则，它能够决定网络流量走默认通道还是代理服务器通道，控制的流量类型包括：HTTP、HTTPS 和 FTP）。内容很简单：</p>
+<pre><code>function FindProxyForURL(url, host)
+{
+    if(shExpMatch(url,&quot;*.douban.com/*&quot;)){
+return &quot;PROXY 192.168.1.134:8088&quot;;
+    }
+}
+</code></pre>
+<p>这个PAC的意思是域名<code>douban.com</code>使用<code>192.168.1.134:8088</code>进行代理，保存文件为test.pac之后，需要开启一个Web服务器提供这个PAC文件的地址，这里使用Python默认的模块来开一个简单的HTTP服务，到你保存的PAC路径使用如下命令：<code>sudo python -m SimpleHTTPServer 9527</code>，这样在你自己本机的IP地址下，就启动了一个Web服务，之后将iOS的WI-FI网络配置你的代理PAC如下：</p>
+<p><img src="https://i.loli.net/2018/06/27/5b33606adb9b5.jpeg" alt="代理配置"></p>
+<p>开启你的抓包软件，抓取你设定好的IP和端口的数据，打开豆瓣阅读进行正常的充值业务，发现不在报错而且可以抓取IAP支付流程的包了，这样就可做交易数据的安全分析了，设定和抓包详情如下：</p>
+<p><img src="https://i.loli.net/2018/06/27/5b336069a8e3e.png" alt="代理设置"></p>
+<p><img src="https://i.loli.net/2018/06/27/5b33606b85e4f.png" alt="抓包详情"></p>
+<h2 id="尾巴">尾巴</h2>
+<p>使用该方法抓包，还是需要设备信任抓包工具的证书不管是Charles还是Burp Suite，基于HTTPS的流量抓包，证书是必备的，只不过使用动态代理的方式绕过了检查机制从而获取了想要的数据。</p>
+
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-1">
+              <h3 class="post-title">
+                移动端安全修炼（一）
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://brick713.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

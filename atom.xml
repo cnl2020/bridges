@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://brick713.github.io</id>
     <title>Brick713 的小黑屋</title>
-    <updated>2019-05-22T15:09:59.098Z</updated>
+    <updated>2019-05-22T15:13:49.331Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://brick713.github.io"/>
     <link rel="self" href="https://brick713.github.io/atom.xml"/>
@@ -11,7 +11,14 @@
     <icon>https://brick713.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Brick713 的小黑屋</rights>
     <entry>
-        <title type="html"><![CDATA[移动端安全修炼1]]></title>
+        <title type="html"><![CDATA[移动端安全修炼（二）]]></title>
+        <id>https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-er</id>
+        <link href="https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-er">
+        </link>
+        <updated>2017-10-15T15:12:11.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[移动端安全修炼（一）]]></title>
         <id>https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-1</id>
         <link href="https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-1">
         </link>
