@@ -1,110 +1,102 @@
+
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+<meta charset="utf-8" >
+
 <title>Linux/BillGates僵尸网络分析 | Brick713 的小黑屋</title>
-<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1558541472320">
+<meta name="description" content="May The Force Be With You">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1558542787363">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://brick713.github.io/styles/main.css">
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://brick713.github.io">
-  <img class="avatar" src="https://brick713.github.io/images/avatar.png?v=1558541472320" alt="">
-  </a>
-  <h1 class="site-title">
-    Brick713 的小黑屋
-  </h1>
-  <p class="site-description">
-    May The Force Be With You
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="https://brick713.github.io/post/about/" class="menu">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-        <a href="https://github.com/brick713" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-      
-    
-      
-        <a href="https://twitter.com/YuppiesBrick" target="_blank">
-          <i class="fab fa-twitter"></i>
-        </a>
-      
-    
-      
-        <a href="https://weibo.com/brick123" target="_blank">
-          <i class="fab fa-weibo"></i>
-        </a>
-      
-    
-      
-        <a href="https://www.zhihu.com/people/Brick713" target="_blank">
-          <i class="fab fa-zhihu"></i>
-        </a>
-      
-    
-      
-    
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://brick713.github.io">
+        <img class="avatar" src="https://brick713.github.io/images/avatar.png?v=1558542787363" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://brick713.github.io">
+        <h1 class="site-title">Brick713 的小黑屋</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
   </div>
 </div>
 
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://brick713.github.io/post/about/" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
 
+
+      <div class="content-container">
         <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              Linux/BillGates僵尸网络分析
-            </h2>
-            <div class="post-info">
-              <time class="post-time">
-                · 2015-11-05 ·
-              </time>
-              
-                <a href="https://brick713.github.io/tag/_uZZVFsLT" class="post-tag">
-                  # 漏洞分析
-                </a>
-              
-            </div>
+          
+          <h2 class="post-title">Linux/BillGates僵尸网络分析</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2015-11-05</span>
             
-            <div class="post-content">
-              <!--  more  -->
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://brick713.github.io/tag/_uZZVFsLT">
+                    漏洞分析
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <!--  more  -->
 <h1 id="0x00起因">0x00起因</h1>
 <p>前阵子在用户某台设备上检测到一个IP在向外大量的发送SSH链接请求，而且有大量的DDOS其他IP的嫌疑。很明显这个IP的机器已经被人黑了，自然需要检测原因。于是就一步步开始排查。</p>
 <h1 id="0x01检查">0x01检查</h1>
@@ -149,33 +141,57 @@
 <p>最后附上个连接，是详细分析Linux/BillGates的有兴趣的可以看看</p>
 <p><a href="https://0x9.me/IPCTs">MMD-0039-2015 - ChinaZ made new malware: ELF Linux/BillGates.Lite</a></p>
 
-            </div>
-          </article>
+          </div>
         </div>
 
         
           <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://brick713.github.io/post/wordpress-wp-all-import-cha-jian-lou-dong-fen-xi">
+            <a class="purple-link" href="https://brick713.github.io/post/wordpress-wp-all-import-cha-jian-lou-dong-fen-xi">
               <h3 class="post-title">
-                Wordpress WP All Import插件漏洞分析
+                下一篇：Wordpress WP All Import插件漏洞分析
               </h3>
             </a>
           </div>
-        
+          
+      </div>
 
-        
+      
 
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://brick713.github.io/atom.xml" target="_blank">RSS</a>
+      <div class="site-footer">
+  <div class="slogan">May The Force Be With You</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://brick713.github.io/atom.xml" target="_blank">RSS</a>
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
 </script>
 
-      </div>
-    </div>
+
+
+
   </body>
 </html>

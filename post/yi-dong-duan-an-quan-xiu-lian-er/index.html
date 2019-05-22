@@ -1,110 +1,102 @@
+
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+<meta charset="utf-8" >
+
 <title>移动端安全修炼（二） | Brick713 的小黑屋</title>
-<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1558541472320">
+<meta name="description" content="May The Force Be With You">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1558542787363">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://brick713.github.io/styles/main.css">
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://brick713.github.io">
-  <img class="avatar" src="https://brick713.github.io/images/avatar.png?v=1558541472320" alt="">
-  </a>
-  <h1 class="site-title">
-    Brick713 的小黑屋
-  </h1>
-  <p class="site-description">
-    May The Force Be With You
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="https://brick713.github.io/post/about/" class="menu">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-        <a href="https://github.com/brick713" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-      
-    
-      
-        <a href="https://twitter.com/YuppiesBrick" target="_blank">
-          <i class="fab fa-twitter"></i>
-        </a>
-      
-    
-      
-        <a href="https://weibo.com/brick123" target="_blank">
-          <i class="fab fa-weibo"></i>
-        </a>
-      
-    
-      
-        <a href="https://www.zhihu.com/people/Brick713" target="_blank">
-          <i class="fab fa-zhihu"></i>
-        </a>
-      
-    
-      
-    
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://brick713.github.io">
+        <img class="avatar" src="https://brick713.github.io/images/avatar.png?v=1558542787363" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://brick713.github.io">
+        <h1 class="site-title">Brick713 的小黑屋</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
   </div>
 </div>
 
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://brick713.github.io/post/about/" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
 
+
+      <div class="content-container">
         <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              移动端安全修炼（二）
-            </h2>
-            <div class="post-info">
-              <time class="post-time">
-                · 2017-10-15 ·
-              </time>
-              
-                <a href="https://brick713.github.io/tag/RXGWrzC76" class="post-tag">
-                  # 移动端安全
-                </a>
-              
-            </div>
+          
+          <h2 class="post-title">移动端安全修炼（二）</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2017-10-15</span>
             
-            <div class="post-content">
-              <!-- more -->
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://brick713.github.io/tag/RXGWrzC76">
+                    移动端安全
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <!-- more -->
 <h2 id="前因">前因</h2>
 <p>iOS针对IAP有一个保护机制，如果使用了全局代理的方式，iOS检查到之后为了保障交易的安全性，将会拒绝IAP流程，所以是无法抓取交易数据的，以豆瓣阅读为例，未开启代理时，可以正常的进入IAP充值界面，开启代理后则会报错：</p>
 <p><img src="https://i.loli.net/2018/06/27/5b33606b4fbff.jpeg" alt="使用全局代理充值请求报错"></p>
@@ -128,33 +120,57 @@ return &quot;PROXY 192.168.1.134:8088&quot;;
 <h2 id="尾巴">尾巴</h2>
 <p>使用该方法抓包，还是需要设备信任抓包工具的证书不管是Charles还是Burp Suite，基于HTTPS的流量抓包，证书是必备的，只不过使用动态代理的方式绕过了检查机制从而获取了想要的数据。</p>
 
-            </div>
-          </article>
+          </div>
         </div>
 
         
           <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://brick713.github.io/post/qian-xi-dns-fan-she-fang-da-gong-ji">
+            <a class="purple-link" href="https://brick713.github.io/post/qian-xi-dns-fan-she-fang-da-gong-ji">
               <h3 class="post-title">
-                浅析DNS反射放大攻击
+                下一篇：浅析DNS反射放大攻击
               </h3>
             </a>
           </div>
-        
+          
+      </div>
 
-        
+      
 
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://brick713.github.io/atom.xml" target="_blank">RSS</a>
+      <div class="site-footer">
+  <div class="slogan">May The Force Be With You</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://brick713.github.io/atom.xml" target="_blank">RSS</a>
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
 </script>
 
-      </div>
-    </div>
+
+
+
   </body>
 </html>

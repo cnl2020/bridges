@@ -1,110 +1,102 @@
+
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+<meta charset="utf-8" >
+
 <title>移动端安全修炼（一） | Brick713 的小黑屋</title>
-<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1558541472320">
+<meta name="description" content="May The Force Be With You">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1558542787363">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://brick713.github.io/styles/main.css">
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://brick713.github.io">
-  <img class="avatar" src="https://brick713.github.io/images/avatar.png?v=1558541472320" alt="">
-  </a>
-  <h1 class="site-title">
-    Brick713 的小黑屋
-  </h1>
-  <p class="site-description">
-    May The Force Be With You
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="https://brick713.github.io/post/about/" class="menu">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-        <a href="https://github.com/brick713" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-      
-    
-      
-        <a href="https://twitter.com/YuppiesBrick" target="_blank">
-          <i class="fab fa-twitter"></i>
-        </a>
-      
-    
-      
-        <a href="https://weibo.com/brick123" target="_blank">
-          <i class="fab fa-weibo"></i>
-        </a>
-      
-    
-      
-        <a href="https://www.zhihu.com/people/Brick713" target="_blank">
-          <i class="fab fa-zhihu"></i>
-        </a>
-      
-    
-      
-    
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://brick713.github.io">
+        <img class="avatar" src="https://brick713.github.io/images/avatar.png?v=1558542787363" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://brick713.github.io">
+        <h1 class="site-title">Brick713 的小黑屋</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
   </div>
 </div>
 
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://brick713.github.io/post/about/" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
 
+
+      <div class="content-container">
         <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              移动端安全修炼（一）
-            </h2>
-            <div class="post-info">
-              <time class="post-time">
-                · 2016-04-06 ·
-              </time>
-              
-                <a href="https://brick713.github.io/tag/RXGWrzC76" class="post-tag">
-                  # 移动端安全
-                </a>
-              
-            </div>
+          
+          <h2 class="post-title">移动端安全修炼（一）</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2016-04-06</span>
             
-            <div class="post-content">
-              <!-- more -->
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://brick713.github.io/tag/RXGWrzC76">
+                    移动端安全
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <!-- more -->
 <p>新开一个坑，主要是记录自己学习移动端的一些相关知识。从基础到复杂吧，也不知道能写多少。从最开始的环境开始。</p>
 <p>移动端安全和Web差别并不大，也是分为服务端和客户端，只不过客户端换成了一个App，服务端和Web基本一致。因此挖掘服务端端漏洞和Web没有太大差别。重点在于如何挖掘客户端端漏洞，涉及反编译，代码审计，等等。</p>
 <p>如果想要开始漏洞挖掘，最基本的还是要一个真实环境，一搬有两种方法，虚拟机和实体机，之前尝试过用虚拟机安装但是坑比较多，暂时放弃了，因为我手上有一台Android和iOS设备，因此暂时使用实体机器进行测试。开始主要针对服务端，那么就要涉及抓包，这里讲下怎么抓包。</p>
@@ -125,33 +117,57 @@
 <p>这样可以看到流量http和https都经过你的电脑了，就可以像测试web一样进行抓包测试了。</p>
 <p>以上是最简单的抓包配置。从这基本上就可以开始进行简单的测试，新世界的大门就打开了。</p>
 
-            </div>
-          </article>
+          </div>
         </div>
 
         
           <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://brick713.github.io/post/phpcms-authkey-xie-lu-lou-dong-fen-xi">
+            <a class="purple-link" href="https://brick713.github.io/post/phpcms-authkey-xie-lu-lou-dong-fen-xi">
               <h3 class="post-title">
-                PHPCMS Authkey 泄露漏洞分析
+                下一篇：PHPCMS Authkey 泄露漏洞分析
               </h3>
             </a>
           </div>
-        
+          
+      </div>
 
-        
+      
 
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://brick713.github.io/atom.xml" target="_blank">RSS</a>
+      <div class="site-footer">
+  <div class="slogan">May The Force Be With You</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://brick713.github.io/atom.xml" target="_blank">RSS</a>
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
 </script>
 
-      </div>
-    </div>
+
+
+
   </body>
 </html>
