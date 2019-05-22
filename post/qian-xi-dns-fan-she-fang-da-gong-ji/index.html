@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>移动端安全修炼（一） | Brick713 的小黑屋</title>
+<title>浅析DNS反射放大攻击 | Brick713 的小黑屋</title>
 <link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1558538946242">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -86,40 +86,61 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              移动端安全修炼（一）
+              浅析DNS反射放大攻击
             </h2>
             <div class="post-info">
               <time class="post-time">
-                · 2016-04-06 ·
+                · 2016-08-19 ·
               </time>
               
-                <a href="https://brick713.github.io/tag/RXGWrzC76" class="post-tag">
-                  # 移动端安全
+                <a href="https://brick713.github.io/tag/_uZZVFsLT" class="post-tag">
+                  # 漏洞分析
                 </a>
               
             </div>
             
             <div class="post-content">
               <!-- more -->
-<p>新开一个坑，主要是记录自己学习移动端的一些相关知识。从基础到复杂吧，也不知道能写多少。从最开始的环境开始。</p>
-<p>移动端安全和Web差别并不大，也是分为服务端和客户端，只不过客户端换成了一个App，服务端和Web基本一致。因此挖掘服务端端漏洞和Web没有太大差别。重点在于如何挖掘客户端端漏洞，涉及反编译，代码审计，等等。</p>
-<p>如果想要开始漏洞挖掘，最基本的还是要一个真实环境，一搬有两种方法，虚拟机和实体机，之前尝试过用虚拟机安装但是坑比较多，暂时放弃了，因为我手上有一台Android和iOS设备，因此暂时使用实体机器进行测试。开始主要针对服务端，那么就要涉及抓包，这里讲下怎么抓包。</p>
-<p>这里只讲一种方法，抓包的方式很多，后面也许会补充，我只讲自己用到的。</p>
-<p>需要工具：</p>
+<h1 id="dns反射放大攻击分析">DNS反射放大攻击分析</h1>
+<p>前阵子业务上碰到了DDOS攻击，正好是DNS反射型的，之前只是听过，没自己处理过，仔细学习了一番之后做点记录。</p>
+<h2 id="简介">简介</h2>
+<p>DNS反射放大攻击主要是利用DNS回复包比请求包大的特点，放大流量，伪造请求包的源IP地址为受害者IP，将应答包的流量引入受害的服务器。</p>
+<p>简单对比下正常的DNS查询和攻击者的攻击方式：</p>
+<blockquote>
+<p>正常DNS查询：
+源IP地址 -----DNS查询----&gt; DNS服务器 -----DNS回复包----&gt; 源IP地址</p>
+</blockquote>
+<blockquote>
+<p>DNS攻击：
+伪造IP地址 -----DNS查询----&gt; DNS服务器 -----DNS回复包----&gt; 伪造的IP地址（攻击目标）</p>
+</blockquote>
+<h2 id="分析">分析</h2>
+<p>从服务器上抓了一些攻击包，根据这些数据包可以来看看这种攻击都是什么特点。</p>
+<ul>
+<li>全部是大量的DNS响应请求（Response请求）</li>
+</ul>
+<p><img src="https://i.loli.net/2018/06/27/5b33620123f20.jpg" alt="147159808627181.jpg"></p>
+<ul>
+<li>通常里面包含一些不存在或者生僻的域名，经过循环查询从而放大DNS流量</li>
+</ul>
+<p><img src="https://i.loli.net/2018/06/27/5b33620124647.jpg" alt="147159840859200.jpg"></p>
+<ul>
+<li>会将将 OPT RR 字段中的 UDP 报文大小设置为很大的值（如 4096）</li>
+</ul>
+<p><img src="https://i.loli.net/2018/06/27/5b336201000de.jpg" alt="147159870918672.jpg"></p>
+<p>通过这样放大了攻击流量。发送的 DNS 查询请求数据包大小一般为 60 字节左右，而查询返回结果的数据包大小通常为 3000 字节以上，因此，使用该方式进行放大攻击能够达到 50 倍以上的放大效果。</p>
+<ul>
+<li>大量的流量都来自正常的DNS服务器</li>
+</ul>
+<p>攻击者通过伪造IP向正常的DNS服务器发送这些恶意的查询请求，将流量引入受害者的服务器，受害者查不到攻击者的真实IP</p>
+<h2 id="解决方案">解决方案</h2>
 <ol>
-<li>电脑一台</li>
-<li>burpsuite</li>
+<li>如果没有必要可以关闭DNS服务（废话么不是</li>
+<li>如果有DNS服务，做好响应限制，DNS服务不应对互联网上的域名解析服务，而只响公司内部网络DNS解析请求</li>
+<li>限制DNS响应数据包大小的阈值，直接丢弃超大的响应数据包</li>
 </ol>
-<p>查看下自己电脑的IP，确保手机和电脑在同一个网络环境下。</p>
-<p><img src="https://i.loli.net/2018/06/27/5b3365f083db3.jpg" alt="IP"></p>
-<p>然后修改手机的Wi-Fi设置，将代理设置为该IP（以Android和ios为例）：</p>
-<p><img src="https://i.loli.net/2018/06/27/5b33660ba2f2e.jpg" alt="手机"></p>
-<p>这样http的流量就会经过你的电脑，接下来需要配置burpsuite</p>
-<p><img src="https://i.loli.net/2018/06/27/5b33664558c7c.jpg" alt="burpsuite"></p>
-<p>这样就可以拦截http流量，但是大部分的流量是https的还需要倒入证书，使用手机的浏览器访问你的代理ip＋端口，可以看到burpsutie的界面，点击<strong>CA Certificate</strong>证书，可以把证书下载，然后倒入手机中即可</p>
-<p><img src="https://i.loli.net/2018/06/27/5b336663e7d73.jpg" alt=""></p>
-<p>这样可以看到流量http和https都经过你的电脑了，就可以像测试web一样进行抓包测试了。</p>
-<p>以上是最简单的抓包配置。从这基本上就可以开始进行简单的测试，新世界的大门就打开了。</p>
+<h2 id="尾巴">尾巴</h2>
+<p>希望以后不要碰上这种攻击，双休还得加班修复。以上全部！</p>
 
             </div>
           </article>
@@ -128,9 +149,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://brick713.github.io/post/phpcms-authkey-xie-lu-lou-dong-fen-xi">
+            <a href="https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-1">
               <h3 class="post-title">
-                PHPCMS Authkey 泄露漏洞分析
+                移动端安全修炼（一）
               </h3>
             </a>
           </div>
