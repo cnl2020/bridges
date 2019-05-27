@@ -1,195 +1,190 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>Brick713 的小黑屋</title>
-<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1558975271243">
+<meta name="description" content="May The Force Be With You">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1558975319642">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://brick713.github.io/styles/main.css">
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-73319140-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-73319140-1');
-</script>
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://brick713.github.io">
-  <img class="avatar" src="https://brick713.github.io/images/avatar.png?v=1558975271243" alt="">
-  </a>
-  <h1 class="site-title">
-    Brick713 的小黑屋
-  </h1>
-  <p class="site-description">
-    May The Force Be With You
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="https://brick713.github.io/post/about/" class="menu">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-        <a href="https://github.com/brick713" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-      
-    
-      
-        <a href="https://twitter.com/YuppiesBrick" target="_blank">
-          <i class="fab fa-twitter"></i>
-        </a>
-      
-    
-      
-        <a href="https://weibo.com/brick123" target="_blank">
-          <i class="fab fa-weibo"></i>
-        </a>
-      
-    
-      
-        <a href="https://www.zhihu.com/people/Brick713" target="_blank">
-          <i class="fab fa-zhihu"></i>
-        </a>
-      
-    
-      
-    
-  </div>
-</div>
+    <div id="app" class="main">
 
-    
-        <div class="post-container">
-  
-    <article class="post">
-      <a href="https://brick713.github.io/post/an-quan-gong-ju-shou-ji">
-        <h2 class="post-title">安全工具收集</h2>
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://brick713.github.io">
+        <img src="https://brick713.github.io/images/avatar.png?v=1558975319642" class="site-logo">
+        <h1 class="site-title">Brick713 的小黑屋</h1>
       </a>
-      <div class="post-info">
-        <time class="post-time">
-          · 2015-08-31 ·
-        </time>
-        
-          <a href="https://brick713.github.io/tag/5rHXmzHGA" class="post-tag">
-            # 安全总结
-          </a>
-        
-      </div>
-      
-        <a href="https://brick713.github.io/post/an-quan-gong-ju-shou-ji" class="post-feature-image" style="background-image: url('https://brick713.github.io/post-images/an-quan-gong-ju-shou-ji.png')">
-        </a>
-      
-      <div class="post-abstract">
-        <p>最近做一些安全风险控制的测试，所以收集了大部分能想到找到的工具，做了一些分类，主要记录了一些工具的分类，功能以及简单介绍。方便进行查询，所有工具的介绍皆来自网络上的描述，我这只是做了个梳理收集。</p>
-<p>公司穷啊，基本上只能用开源或者破解的软件，我自己也就是个『脚本小子』的等级。</p>
-
-      </di>
-    </article>
-  
-    <article class="post">
-      <a href="https://brick713.github.io/post/fu-wu-qi-an-quan-pei-zhi-zhi-nan">
-        <h2 class="post-title">服务器安全配置指南</h2>
-      </a>
-      <div class="post-info">
-        <time class="post-time">
-          · 2015-06-15 ·
-        </time>
-        
-          <a href="https://brick713.github.io/tag/5rHXmzHGA" class="post-tag">
-            # 安全总结
-          </a>
-        
-      </div>
-      
-        <a href="https://brick713.github.io/post/fu-wu-qi-an-quan-pei-zhi-zhi-nan" class="post-feature-image" style="background-image: url('https://brick713.github.io/post-images/fu-wu-qi-an-quan-pei-zhi-zhi-nan.jpg')">
-        </a>
-      
-      <div class="post-abstract">
-        
-      </di>
-    </article>
-  
-    <article class="post">
-      <a href="https://brick713.github.io/post/ubuntu-server-pei-zhi-zhi-nan">
-        <h2 class="post-title">Ubuntu Server 配置指南</h2>
-      </a>
-      <div class="post-info">
-        <time class="post-time">
-          · 2015-06-11 ·
-        </time>
-        
-          <a href="https://brick713.github.io/tag/5rHXmzHGA" class="post-tag">
-            # 安全总结
-          </a>
-        
-      </div>
-      
-        <a href="https://brick713.github.io/post/ubuntu-server-pei-zhi-zhi-nan" class="post-feature-image" style="background-image: url('https://brick713.github.io/post-images/ubuntu-server-pei-zhi-zhi-nan.jpg')">
-        </a>
-      
-      <div class="post-abstract">
-        
-      </di>
-    </article>
-  
-</div>
-
-    
-        <div class="pagination-container">
-  
-    <a href="https://brick713.github.io/" class="prev-page">上一页</a>
-  
-  
-</div>
-
-    
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://brick713.github.io/atom.xml" target="_blank">RSS</a>
-</div>
-
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
-
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
       </div>
     </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://brick713.github.io/post/about/" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      May The Force Be With You
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://brick713.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://brick713.github.io/post/an-quan-gong-ju-shou-ji">
+                  <h2 class="post-title">安全工具收集</h2>
+                </a>
+                <div class="post-date">
+                  2015-08-31
+                </div>
+                <div class="post-abstract">
+                  <p>最近做一些安全风险控制的测试，所以收集了大部分能想到找到的工具，做了一些分类，主要记录了一些工具的分类，功能以及简单介绍。方便进行查询，所有工具的介绍皆来自网络上的描述，我这只是做了个梳理收集。</p>
+<p>公司穷啊，基本上只能用开源或者破解的软件，我自己也就是个『脚本小子』的等级。</p>
+
+                </div>
+              </div>
+              
+                <a class="right" href="https://brick713.github.io/post/an-quan-gong-ju-shou-ji">
+                  <div class="feature-container" style="background-image: url('https://brick713.github.io/post-images/an-quan-gong-ju-shou-ji.png')">
+                  </div>
+                </a>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://brick713.github.io/post/fu-wu-qi-an-quan-pei-zhi-zhi-nan">
+                  <h2 class="post-title">服务器安全配置指南</h2>
+                </a>
+                <div class="post-date">
+                  2015-06-15
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+                <a class="right" href="https://brick713.github.io/post/fu-wu-qi-an-quan-pei-zhi-zhi-nan">
+                  <div class="feature-container" style="background-image: url('https://brick713.github.io/post-images/fu-wu-qi-an-quan-pei-zhi-zhi-nan.jpg')">
+                  </div>
+                </a>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://brick713.github.io/post/ubuntu-server-pei-zhi-zhi-nan">
+                  <h2 class="post-title">Ubuntu Server 配置指南</h2>
+                </a>
+                <div class="post-date">
+                  2015-06-11
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+                <a class="right" href="https://brick713.github.io/post/ubuntu-server-pei-zhi-zhi-nan">
+                  <div class="feature-container" style="background-image: url('https://brick713.github.io/post-images/ubuntu-server-pei-zhi-zhi-nan.jpg')">
+                  </div>
+                </a>
+              
+            </article>
+          
+
+          <div class="pagination-container">
+  
+    <a href="https://brick713.github.io/" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
+  
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
   </body>
 </html>
