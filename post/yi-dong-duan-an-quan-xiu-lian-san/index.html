@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1559579269713">
+<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1559579392774">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://brick713.github.io/styles/main.css">
 
@@ -45,7 +45,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://brick713.github.io">
-        <img src="https://brick713.github.io/images/avatar.png?v=1559579269713" class="site-logo">
+        <img src="https://brick713.github.io/images/avatar.png?v=1559579392774" class="site-logo">
         <h1 class="site-title">Brick713 的小黑屋</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -133,7 +133,6 @@
               <h2 id="起因">起因</h2>
 <p>Android 7.0 之后 Google 默认不信任 User 域下的证书，也就是自行导入证书的方式去抓 HTTPS 包的方法已经不管用了，再加上现在大部分 App 都使用了 SSL Pinning，因此抓包的难度也比之前大了不少。此时再想抓 HTTPS 的流量就要用别的方法了。</p>
 <p>如果你够强直接逆向了 App，然后在应用的证书信任的配置文件里添加上你的证书，那么你还是可以抓取这个 App 的流量的，但是这种方法工作量太大，针对不同的应用你还需要一个个逆向文件，成本实在太高。这里讲的方法还是相对省事省时间的方法。<strong>通过获取手机 Root 权限，将 BurpSuite 的证书导入系统域中</strong>，这样系统就会信任你的证书，达到抓取所有 App 流量的目的了。</p>
-<!-- more -->
 <h2 id="方法">方法</h2>
 <p>在进行之前确保你有以下的条件：</p>
 <ol>

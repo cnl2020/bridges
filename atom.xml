@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://brick713.github.io</id>
     <title>Brick713 的小黑屋</title>
-    <updated>2019-06-03T16:27:52.342Z</updated>
+    <updated>2019-06-03T16:30:00.875Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://brick713.github.io"/>
     <link rel="self" href="https://brick713.github.io/atom.xml"/>
@@ -16,14 +16,6 @@
         <link href="https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-san">
         </link>
         <updated>2019-06-03T14:57:43.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="起因">起因</h2>
-<p>Android 7.0 之后 Google 默认不信任 User 域下的证书，也就是自行导入证书的方式去抓 HTTPS 包的方法已经不管用了，再加上现在大部分 App 都使用了 SSL Pinning，因此抓包的难度也比之前大了不少。此时再想抓 HTTPS 的流量就要用别的方法了。</p>
-<p>如果你够强直接逆向了 App，然后在应用的证书信任的配置文件里添加上你的证书，那么你还是可以抓取这个 App 的流量的，但是这种方法工作量太大，针对不同的应用你还需要一个个逆向文件，成本实在太高。这里讲的方法还是相对省事省时间的方法。<strong>通过获取手机 Root 权限，将 BurpSuite 的证书导入系统域中</strong>，这样系统就会信任你的证书，达到抓取所有 App 流量的目的了。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h2 id="起因">起因</h2>
-<p>Android 7.0 之后 Google 默认不信任 User 域下的证书，也就是自行导入证书的方式去抓 HTTPS 包的方法已经不管用了，再加上现在大部分 App 都使用了 SSL Pinning，因此抓包的难度也比之前大了不少。此时再想抓 HTTPS 的流量就要用别的方法了。</p>
-<p>如果你够强直接逆向了 App，然后在应用的证书信任的配置文件里添加上你的证书，那么你还是可以抓取这个 App 的流量的，但是这种方法工作量太大，针对不同的应用你还需要一个个逆向文件，成本实在太高。这里讲的方法还是相对省事省时间的方法。<strong>通过获取手机 Root 权限，将 BurpSuite 的证书导入系统域中</strong>，这样系统就会信任你的证书，达到抓取所有 App 流量的目的了。</p>
-]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Kubernetes Api Server 未授权访问漏洞]]></title>
