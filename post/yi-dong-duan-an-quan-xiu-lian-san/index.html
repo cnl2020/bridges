@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>浅析DNS反射放大攻击 | Brick713 的小黑屋</title>
+<title>移动端安全修炼（三） | Brick713 的小黑屋</title>
 <meta name="description" content="May The Force Be With You">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -123,71 +123,66 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">浅析DNS反射放大攻击</h2>
-            <div class="post-date">2016-08-19</div>
+            <h2 class="post-title">移动端安全修炼（三）</h2>
+            <div class="post-date">2019-06-03</div>
             
-              <div class="feature-container" style="background-image: url('https://brick713.github.io/post-images/qian-xi-dns-fan-she-fang-da-gong-ji.jpg')">
+              <div class="feature-container" style="background-image: url('https://brick713.github.io/post-images/yi-dong-duan-an-quan-xiu-lian-san.jpg')">
               </div>
             
             <div class="post-content">
-              <!-- more -->
-<h1 id="dns反射放大攻击分析">DNS反射放大攻击分析</h1>
-<p>前阵子业务上碰到了DDOS攻击，正好是DNS反射型的，之前只是听过，没自己处理过，仔细学习了一番之后做点记录。</p>
-<h2 id="简介">简介</h2>
-<p>DNS反射放大攻击主要是利用DNS回复包比请求包大的特点，放大流量，伪造请求包的源IP地址为受害者IP，将应答包的流量引入受害的服务器。</p>
-<p>简单对比下正常的DNS查询和攻击者的攻击方式：</p>
-<blockquote>
-<p>正常DNS查询：
-源IP地址 -----DNS查询----&gt; DNS服务器 -----DNS回复包----&gt; 源IP地址</p>
-</blockquote>
-<blockquote>
-<p>DNS攻击：
-伪造IP地址 -----DNS查询----&gt; DNS服务器 -----DNS回复包----&gt; 伪造的IP地址（攻击目标）</p>
-</blockquote>
-<h2 id="分析">分析</h2>
-<p>从服务器上抓了一些攻击包，根据这些数据包可以来看看这种攻击都是什么特点。</p>
-<ul>
-<li>全部是大量的DNS响应请求（Response请求）</li>
-</ul>
-<p><img src="https://i.loli.net/2018/06/27/5b33620123f20.jpg" alt="147159808627181.jpg"></p>
-<ul>
-<li>通常里面包含一些不存在或者生僻的域名，经过循环查询从而放大DNS流量</li>
-</ul>
-<p><img src="https://i.loli.net/2018/06/27/5b33620124647.jpg" alt="147159840859200.jpg"></p>
-<ul>
-<li>会将将 OPT RR 字段中的 UDP 报文大小设置为很大的值（如 4096）</li>
-</ul>
-<p><img src="https://i.loli.net/2018/06/27/5b336201000de.jpg" alt="147159870918672.jpg"></p>
-<p>通过这样放大了攻击流量。发送的 DNS 查询请求数据包大小一般为 60 字节左右，而查询返回结果的数据包大小通常为 3000 字节以上，因此，使用该方式进行放大攻击能够达到 50 倍以上的放大效果。</p>
-<ul>
-<li>大量的流量都来自正常的DNS服务器</li>
-</ul>
-<p>攻击者通过伪造IP向正常的DNS服务器发送这些恶意的查询请求，将流量引入受害者的服务器，受害者查不到攻击者的真实IP</p>
-<h2 id="解决方案">解决方案</h2>
+              <h2 id="起因">起因</h2>
+<p>Android 7.0 之后 Google 默认不信任 User 域下的证书，也就是自行导入证书的方式去抓 HTTPS 包的方法已经不管用了，再加上现在大部分 App 都使用了 SSL Pinning，因此抓包的难度也比之前大了不少。此时再想抓 HTTPS 的流量就要用别的方法了。</p>
+<p>如果你够强直接逆向了 App，然后在应用的证书信任的配置文件里添加上你的证书，那么你还是可以抓取这个 App 的流量的，但是这种方法工作量太大，针对不同的应用你还需要一个个逆向文件，成本实在太高。这里讲的方法还是相对省事省时间的方法。<strong>通过获取手机 Root 权限，将 BurpSuite 的证书导入系统域中</strong>，这样系统就会信任你的证书，达到抓取所有 App 流量的目的了。</p>
+<h2 id="方法">方法</h2>
+<p>在进行之前确保你有以下的条件：</p>
 <ol>
-<li>如果没有必要可以关闭DNS服务（废话么不是</li>
-<li>如果有DNS服务，做好响应限制，DNS服务不应对互联网上的域名解析服务，而只响公司内部网络DNS解析请求</li>
-<li>限制DNS响应数据包大小的阈值，直接丢弃超大的响应数据包</li>
+<li>一部获取了 Root 权限的手机</li>
+<li>电脑有 OpenSSL 环境</li>
 </ol>
-<h2 id="尾巴">尾巴</h2>
-<p>希望以后不要碰上这种攻击，双休还得加班修复。以上全部！</p>
+<p>如果你有了上面的条件，下面开始开始操作</p>
+<ol>
+<li>
+<p>从 Brupsuit 中导出证书文件 cacert.der</p>
+</li>
+<li>
+<p>将 Der 的证书转换为 PEM 格式 <code>openssl x509 -in cacert.der -inform DER -out cacert.pem -outform PEM</code></p>
+</li>
+<li>
+<p>获取证书的 hash <code>openssl x509 -inform PEM -subject_hash -in certificate.pem | head -1</code> 记住输出的hash，例如 '9a5ba575'</p>
+</li>
+<li>
+<p>将证书内容输出到新文件中，文件名称格式为为刚刚输出的 <strong>hash + .0</strong>， <code>cat certificate.pem &gt; 9a5ba575.0</code></p>
+</li>
+<li>
+<p>将证书内容格式化后追加到刚刚生成的文件中，<code>openssl x509 -inform PEM -text -in cacert.pem -out /dev/null &gt;&gt; 9a5ba575.0</code></p>
+</li>
+<li>
+<p>将文件传入手机中<code>adb push 9a5ba575.0 /system/etc/security/cacerts/</code></p>
+</li>
+<li>
+<p>使用 ADB 连接手机，执行 <code>adb shell</code> 切换到 Root 权限，然后挂载/system, <code>mount -o rw,remount /system</code>，给你的证书文件加上权限 <code>chmod 644 /system/etc/security/cacerts/9a5ba575.0</code></p>
+</li>
+<li>
+<p>重启手机，查看证书是否安装完成</p>
+</li>
+</ol>
+<p>重启手机之后，可以去你的证书目录中查看下证书是否正常导入了，下面是正常的的状态。</p>
+<p><img src="https://i.loli.net/2019/06/04/5cf545e54a48687440.jpg" alt="photo_2019-06-04_00-07-36.jpg"></p>
+<h2 id="尾声">尾声</h2>
+<p>除了导入证书，也有其他的方法来解决这个问题，比如通过 Xposed 插件的方法来实现抓包
+<a href="https://bbs.pediy.com/thread-226435.htm">如何使用Xposed+JustTrustMe来突破SSL Pinning</a>
+或者通过虚拟环境的的方式来抓包，比如使用 HttpCanary，好处是不需要 Root 你的手机
+<a href="https://juejin.im/post/5c1e370ae51d45374272696e">手机抓包+注入黑科技HttpCanary——最强大的Android抓包注入工具</a>
+你可以根据自己的实际情况来选择方案。</p>
 
             </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://brick713.github.io/tag/_uZZVFsLT" class="tag">
-                    漏洞分析
-                  </a>
-                
-              </div>
             
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-1">
+                <a href="https://brick713.github.io/post/kubernetes-api-server-wei-shou-quan-fang-wen-lou-dong">
                   <h3 class="post-title">
-                    移动端安全修炼（一）
+                    Kubernetes Api Server 未授权访问漏洞
                   </h3>
                 </a>
               </div>
