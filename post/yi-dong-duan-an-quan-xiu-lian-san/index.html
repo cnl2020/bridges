@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1560481134861">
+<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1562035576092">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://brick713.github.io/styles/main.css">
 
@@ -45,7 +45,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://brick713.github.io">
-        <img src="https://brick713.github.io/images/avatar.png?v=1560481134861" class="site-logo">
+        <img src="https://brick713.github.io/images/avatar.png?v=1562035576092" class="site-logo">
         <h1 class="site-title">Brick713 的小黑屋</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -148,10 +148,10 @@
 <p>将 Der 的证书转换为 PEM 格式 <code>openssl x509 -in cacert.der -inform DER -out cacert.pem -outform PEM</code></p>
 </li>
 <li>
-<p>获取证书的 hash <code>openssl x509 -inform PEM -subject_hash -in certificate.pem | head -1</code> 记住输出的hash，例如 '9a5ba575'</p>
+<p>获取证书的 hash <code>openssl x509 -inform PEM -subject_hash -in cacert.pem | head -1</code> 记住输出的hash，例如 '9a5ba575'</p>
 </li>
 <li>
-<p>将证书内容输出到新文件中，文件名称格式为为刚刚输出的 <strong>hash + .0</strong>， <code>cat certificate.pem &gt; 9a5ba575.0</code></p>
+<p>将证书内容输出到新文件中，文件名称格式为为刚刚输出的 <strong>hash + .0</strong>， <code>cat cacert.pem &gt; 9a5ba575.0</code></p>
 </li>
 <li>
 <p>将证书内容格式化后追加到刚刚生成的文件中，<code>openssl x509 -inform PEM -text -in cacert.pem -out /dev/null &gt;&gt; 9a5ba575.0</code></p>
