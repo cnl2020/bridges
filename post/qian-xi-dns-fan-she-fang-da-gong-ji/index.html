@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1562035576092">
+<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1577780469594">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://brick713.github.io/styles/main.css">
 
@@ -45,7 +45,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://brick713.github.io">
-        <img src="https://brick713.github.io/images/avatar.png?v=1562035576092" class="site-logo">
+        <img src="https://brick713.github.io/images/avatar.png?v=1577780469594" class="site-logo">
         <h1 class="site-title">Brick713 的小黑屋</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -102,7 +102,7 @@
         
       
         
-          <a class="social-link" href="https://www.zhihu.com/people/Brick713" target="_blank">
+          <a class="social-link" href="https://www.zhihu.com/people/brick713" target="_blank">
             <i class="fab fa-zhihu"></i>
           </a>
         
@@ -137,11 +137,11 @@
 <p>DNS反射放大攻击主要是利用DNS回复包比请求包大的特点，放大流量，伪造请求包的源IP地址为受害者IP，将应答包的流量引入受害的服务器。</p>
 <p>简单对比下正常的DNS查询和攻击者的攻击方式：</p>
 <blockquote>
-<p>正常DNS查询：
+<p>正常DNS查询：<br>
 源IP地址 -----DNS查询----&gt; DNS服务器 -----DNS回复包----&gt; 源IP地址</p>
 </blockquote>
 <blockquote>
-<p>DNS攻击：
+<p>DNS攻击：<br>
 伪造IP地址 -----DNS查询----&gt; DNS服务器 -----DNS回复包----&gt; 伪造的IP地址（攻击目标）</p>
 </blockquote>
 <h2 id="分析">分析</h2>
@@ -149,15 +149,15 @@
 <ul>
 <li>全部是大量的DNS响应请求（Response请求）</li>
 </ul>
-<p><img src="https://i.loli.net/2018/06/27/5b33620123f20.jpg" alt="147159808627181.jpg"></p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2018/06/27/5b33620123f20.jpg" alt="147159808627181.jpg" loading="lazy"></figure>
 <ul>
 <li>通常里面包含一些不存在或者生僻的域名，经过循环查询从而放大DNS流量</li>
 </ul>
-<p><img src="https://i.loli.net/2018/06/27/5b33620124647.jpg" alt="147159840859200.jpg"></p>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2018/06/27/5b33620124647.jpg" alt="147159840859200.jpg" loading="lazy"></figure>
 <ul>
 <li>会将将 OPT RR 字段中的 UDP 报文大小设置为很大的值（如 4096）</li>
 </ul>
-<p><img src="https://i.loli.net/2018/06/27/5b336201000de.jpg" alt="147159870918672.jpg"></p>
+<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2018/06/27/5b336201000de.jpg" alt="147159870918672.jpg" loading="lazy"></figure>
 <p>通过这样放大了攻击流量。发送的 DNS 查询请求数据包大小一般为 60 字节左右，而查询返回结果的数据包大小通常为 3000 字节以上，因此，使用该方式进行放大攻击能够达到 50 倍以上的放大效果。</p>
 <ul>
 <li>大量的流量都来自正常的DNS服务器</li>

@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1562035576092">
+<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1577780469594">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://brick713.github.io/styles/main.css">
 
@@ -45,7 +45,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://brick713.github.io">
-        <img src="https://brick713.github.io/images/avatar.png?v=1562035576092" class="site-logo">
+        <img src="https://brick713.github.io/images/avatar.png?v=1577780469594" class="site-logo">
         <h1 class="site-title">Brick713 的小黑屋</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -102,7 +102,7 @@
         
       
         
-          <a class="social-link" href="https://www.zhihu.com/people/Brick713" target="_blank">
+          <a class="social-link" href="https://www.zhihu.com/people/brick713" target="_blank">
             <i class="fab fa-zhihu"></i>
           </a>
         
@@ -177,7 +177,7 @@ function is_username($username) {
 }
 
 </code></pre>
-<p>Login对变量进行了处理之后将变量创给了ps_member_login函数
+<p>Login对变量进行了处理之后将变量创给了ps_member_login函数<br>
 继续跟进ps_member_login和_ps_send函数</p>
 <pre><code>/**
 * 用户登陆
@@ -227,7 +227,7 @@ parse_str(sys_auth($_POST['data'], 'DECODE', $this-&gt;applist[$this-&gt;appid][
         exit('0');
 }
 </code></pre>
-<p>这里POST数据使用了parse_str函数进行处理。它的功能是解析出POST数据中的变量值。
+<p>这里POST数据使用了parse_str函数进行处理。它的功能是解析出POST数据中的变量值。<br>
 例如：</p>
 <pre><code>&lt;?php
 parse_str(&quot;id=23&amp;name=John%20Adams&quot;);
@@ -237,21 +237,21 @@ echo $name;
 </code></pre>
 <p>输出：</p>
 <blockquote>
-<p>23
+<p>23<br>
 John Adams</p>
 </blockquote>
 <p>当我们的数据为“username=123&amp;password=456”这样的字符串，会把它解析为：</p>
 <blockquote>
-<p>Array(
-username=&gt;123,
-password=&gt;456
+<p>Array(<br>
+username=&gt;123,<br>
+password=&gt;456<br>
 )</p>
 </blockquote>
 <p>但是这个函数存在解析问题，如果我们构造字符串成“usernamen=123&amp;password=456&amp;username=789”，他就会被解析为：</p>
 <blockquote>
-<p>Array(
-username=&gt;789,
-password=&gt;456
+<p>Array(<br>
+username=&gt;789,<br>
+password=&gt;456<br>
 }</p>
 </blockquote>
 <p>那这样我们的利用思路就有了：将”&amp;username=”进行url编码后作为password的值用于在phpsso中覆盖之前的username值，在“&amp;username=”后面添加进行两次url编码的SQL语句，构造出来的POST数据如下：</p>

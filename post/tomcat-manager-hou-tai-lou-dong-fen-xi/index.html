@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1562035576092">
+<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1577780469594">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://brick713.github.io/styles/main.css">
 
@@ -45,7 +45,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://brick713.github.io">
-        <img src="https://brick713.github.io/images/avatar.png?v=1562035576092" class="site-logo">
+        <img src="https://brick713.github.io/images/avatar.png?v=1577780469594" class="site-logo">
         <h1 class="site-title">Brick713 的小黑屋</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -102,7 +102,7 @@
         
       
         
-          <a class="social-link" href="https://www.zhihu.com/people/Brick713" target="_blank">
+          <a class="social-link" href="https://www.zhihu.com/people/brick713" target="_blank">
             <i class="fab fa-zhihu"></i>
           </a>
         
@@ -137,7 +137,7 @@
 <p>tomcat是一个开源Web服务器，基于Tomcat的Web运行效率高，可以在一般的硬件平台上流畅运行，因此，颇受Web站长的青睐。不过，在默认配置下其存在一定的安全隐患，可被恶意攻击。</p>
 <h1 id="0x01-问题起源">0x01 问题起源</h1>
 <p>Tomcat是一个开源Web服务器，基于Tomcat的Web运行效率高，最方便的是没有复杂的安全，解压文件就能使用，不过因为Tomcat实在太火了，被人研究的也很透彻。</p>
-<p><img src="https://i.loli.net/2018/06/27/5b3364f437e0e.jpeg" alt="后台界面"></p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2018/06/27/5b3364f437e0e.jpeg" alt="后台界面" loading="lazy"></figure>
 <ul>
 <li>Tomcat的默认后台地址为:http://域名:端口/manager/html.</li>
 </ul>
@@ -145,9 +145,9 @@
 <ul>
 <li>获取Webshell</li>
 </ul>
-<p>在管理界面有很多信息可以查看，<strong>包括Linux版本，Tomcat版本，相关路径等等</strong>
+<p>在管理界面有很多信息可以查看，<strong>包括Linux版本，Tomcat版本，相关路径等等</strong><br>
 管理界面有个模块，可以上传WAR文件。Tomcat可以解析WAR文件，能够将其解压并生成web文件。</p>
-<p>如果将一个jsp格式的webshell打包然后改名为WAR，将其上传到服务器，
+<p>如果将一个jsp格式的webshell打包然后改名为WAR，将其上传到服务器，<br>
 然后在上传路径上打开jsp木马，这样就获得了一个Webshell。</p>
 <ul>
 <li>获取设备root权限</li>

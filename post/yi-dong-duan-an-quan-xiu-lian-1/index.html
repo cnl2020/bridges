@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1562035576092">
+<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1577780469594">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://brick713.github.io/styles/main.css">
 
@@ -45,7 +45,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://brick713.github.io">
-        <img src="https://brick713.github.io/images/avatar.png?v=1562035576092" class="site-logo">
+        <img src="https://brick713.github.io/images/avatar.png?v=1577780469594" class="site-logo">
         <h1 class="site-title">Brick713 的小黑屋</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -102,7 +102,7 @@
         
       
         
-          <a class="social-link" href="https://www.zhihu.com/people/Brick713" target="_blank">
+          <a class="social-link" href="https://www.zhihu.com/people/brick713" target="_blank">
             <i class="fab fa-zhihu"></i>
           </a>
         
@@ -141,13 +141,13 @@
 <li>burpsuite</li>
 </ol>
 <p>查看下自己电脑的IP，确保手机和电脑在同一个网络环境下。</p>
-<p><img src="https://i.loli.net/2018/06/27/5b3365f083db3.jpg" alt="IP"></p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2018/06/27/5b3365f083db3.jpg" alt="IP" loading="lazy"></figure>
 <p>然后修改手机的Wi-Fi设置，将代理设置为该IP（以Android和ios为例）：</p>
-<p><img src="https://i.loli.net/2018/06/27/5b33660ba2f2e.jpg" alt="手机"></p>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2018/06/27/5b33660ba2f2e.jpg" alt="手机" loading="lazy"></figure>
 <p>这样http的流量就会经过你的电脑，接下来需要配置burpsuite</p>
-<p><img src="https://i.loli.net/2018/06/27/5b33664558c7c.jpg" alt="burpsuite"></p>
+<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2018/06/27/5b33664558c7c.jpg" alt="burpsuite" loading="lazy"></figure>
 <p>这样就可以拦截http流量，但是大部分的流量是https的还需要倒入证书，使用手机的浏览器访问你的代理ip＋端口，可以看到burpsutie的界面，点击<strong>CA Certificate</strong>证书，可以把证书下载，然后倒入手机中即可</p>
-<p><img src="https://i.loli.net/2018/06/27/5b336663e7d73.jpg" alt=""></p>
+<figure data-type="image" tabindex="4"><img src="https://i.loli.net/2018/06/27/5b336663e7d73.jpg" alt="" loading="lazy"></figure>
 <p>这样可以看到流量http和https都经过你的电脑了，就可以像测试web一样进行抓包测试了。</p>
 <p>以上是最简单的抓包配置。从这基本上就可以开始进行简单的测试，新世界的大门就打开了。</p>
 

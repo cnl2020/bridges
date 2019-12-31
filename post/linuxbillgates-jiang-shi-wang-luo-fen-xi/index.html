@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1562035576092">
+<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1577780469594">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://brick713.github.io/styles/main.css">
 
@@ -45,7 +45,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://brick713.github.io">
-        <img src="https://brick713.github.io/images/avatar.png?v=1562035576092" class="site-logo">
+        <img src="https://brick713.github.io/images/avatar.png?v=1577780469594" class="site-logo">
         <h1 class="site-title">Brick713 的小黑屋</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -102,7 +102,7 @@
         
       
         
-          <a class="social-link" href="https://www.zhihu.com/people/Brick713" target="_blank">
+          <a class="social-link" href="https://www.zhihu.com/people/brick713" target="_blank">
             <i class="fab fa-zhihu"></i>
           </a>
         
@@ -135,27 +135,27 @@
 <p>前阵子在用户某台设备上检测到一个IP在向外大量的发送SSH链接请求，而且有大量的DDOS其他IP的嫌疑。很明显这个IP的机器已经被人黑了，自然需要检测原因。于是就一步步开始排查。</p>
 <h1 id="0x01检查">0x01检查</h1>
 <p>先通过<strong>Tcpdump</strong>抓了下机器的包。发现在大量的SSH包中，还存在比较大的<strong>TCP</strong>的包，而这些包都指向一个<strong>IP 183.56.173.197</strong>，把这部分包都抓下来分析下。包里内容如下：</p>
-<p><img src="https://i.loli.net/2018/06/27/5b33642e2cc3b.png" alt="di1.png"></p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2018/06/27/5b33642e2cc3b.png" alt="di1.png" loading="lazy"></figure>
 <p>这个是个比较明显的和僵尸主机的CNC回传通信，应该是确认僵尸存活使用的。</p>
 <p>顺便查了下这个<strong>IP 183.56.173.197</strong>，就是一个恶意的主机节点。而且应该还是个存活的节点。</p>
-<p><img src="https://i.loli.net/2018/06/27/5b33644eaf0ff.png" alt="di2.png"></p>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2018/06/27/5b33644eaf0ff.png" alt="di2.png" loading="lazy"></figure>
 <p>查询了一下，发现这个主机节点控制一种叫<strong>Linux/BillGates.Lite</strong>僵尸网络。这种僵尸网络主要是被用来进行DDOS攻击，同样会窃取服务的文件发送给僵尸主机。当僵尸存在的时候会在机器的**/tmp/<strong>路径下生产一个标志性文件</strong>gates.lod**，于是我去路径下很快就发现了这个文件。</p>
-<p><img src="https://i.loli.net/2018/06/27/5b336465275f3.png" alt="di3.png"></p>
+<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2018/06/27/5b336465275f3.png" alt="di3.png" loading="lazy"></figure>
 <p>到此基本上就确认了是Linux/BillGates影响了该机器。</p>
 <h1 id="0x02-溯源">0x02 溯源</h1>
-<p>既然机器被人黑了，总要查下攻击者怎么进来的。
+<p>既然机器被人黑了，总要查下攻击者怎么进来的。<br>
 使用<code>last</code>命令看一下近期的登陆情况。发现了端倪：</p>
-<p><img src="https://i.loli.net/2018/06/27/5b336410c64eb.png" alt="di4.png">
+<p><img src="https://i.loli.net/2018/06/27/5b336410c64eb.png" alt="di4.png" loading="lazy"><br>
 这两个IP是外网IP而且非常搞笑的是他们的地址完全和机器无关</p>
-<p><img src="https://i.loli.net/2018/06/27/5b3363eaac21d.png" alt="di5.png"></p>
-<p><img src="https://i.loli.net/2018/06/27/5b33638e40aca.png" alt="di6.png"></p>
+<figure data-type="image" tabindex="4"><img src="https://i.loli.net/2018/06/27/5b3363eaac21d.png" alt="di5.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://i.loli.net/2018/06/27/5b33638e40aca.png" alt="di6.png" loading="lazy"></figure>
 <p>进来的时间也非常可疑，凌晨2点上下。很明显就是攻击者啦。至于怎么进来的，从这看应该是通过SSH暴力破解进入的机器。这个<strong>Oracle</strong>账号的密码应该是过于简单了。</p>
 <p>既然已经定位到账号了。看看他在这个时间段都干嘛了。进入用户目录/home/oracle/，查看.bash_history文件：</p>
-<p><img src="https://i.loli.net/2018/06/27/5b33635a86a03.png" alt="di7.png"></p>
-<p>一目了然，攻击者进来之后，先进入了**/tmp**目录，然后去僵尸主机上下载了一个可执行文件，加权后执行然后退出该账号。
+<figure data-type="image" tabindex="6"><img src="https://i.loli.net/2018/06/27/5b33635a86a03.png" alt="di7.png" loading="lazy"></figure>
+<p>一目了然，攻击者进来之后，先进入了**/tmp**目录，然后去僵尸主机上下载了一个可执行文件，加权后执行然后退出该账号。<br>
 这个可执行文件最后没有找到。细想一下应该是执行完后自删除了，不留痕迹。</p>
 <p>最后生成的恶意文件gates.lod，权限账户就是为oracle。</p>
-<p><img src="https://i.loli.net/2018/06/27/5b3363303f99e.png" alt="di8.png"></p>
+<figure data-type="image" tabindex="7"><img src="https://i.loli.net/2018/06/27/5b3363303f99e.png" alt="di8.png" loading="lazy"></figure>
 <h1 id="0x03-结论">0x03 结论</h1>
 <p>攻击者进来的方式很简单，<strong>SSH暴力破解</strong>，完成破解之后，去主机上下载可执行文件，执行后加载了僵尸病毒，最后完成自删除行为，被植入僵尸的主机会干3件事：</p>
 <ol>
