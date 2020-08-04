@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1577780469594">
+<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1596523289283">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://brick713.github.io/styles/main.css">
 
@@ -45,7 +45,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://brick713.github.io">
-        <img src="https://brick713.github.io/images/avatar.png?v=1577780469594" class="site-logo">
+        <img src="https://brick713.github.io/images/avatar.png?v=1596523289283" class="site-logo">
         <h1 class="site-title">Brick713 的小黑屋</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -133,6 +133,7 @@
               <!-- more -->
 <h1 id="0x00-漏洞描述">0x00 漏洞描述</h1>
 <p>在PHPCMS V9版本（最新版本）的登录功能中，存在SQL注入漏洞，登录界面通过POST传入的data内容，解析其中的内容会作为注册、登陆、删除用户等操作的内容依据，而这些操作都会将这些数据作为数据库查询语句使用。因为代码没有做过滤，攻击者可以利用POST内容进行SQL注入。</p>
+<!-- more -->
 <h1 id="0x01-漏洞成因">0x01 漏洞成因</h1>
 <p>总结来说漏洞的成因主要是以下两点：</p>
 <p>1.<em>POST内容用来进行数据库查询</em></p>
@@ -285,7 +286,7 @@ $password = isset($_POST['password']) &amp;&amp; trim($_POST['password']) ? adds
             
               <div class="tag-container">
                 
-                  <a href="https://brick713.github.io/tag/_uZZVFsLT" class="tag">
+                  <a href="https://brick713.github.io/tag/_uZZVFsLT/" class="tag">
                     漏洞分析
                   </a>
                 
@@ -294,7 +295,7 @@ $password = isset($_POST['password']) &amp;&amp; trim($_POST['password']) ? adds
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://brick713.github.io/post/an-quan-gong-ju-shou-ji">
+                <a href="https://brick713.github.io/post/an-quan-gong-ju-shou-ji/">
                   <h3 class="post-title">
                     安全工具收集
                   </h3>

@@ -2,81 +2,145 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://brick713.github.io</id>
     <title>Brick713 的小黑屋</title>
-    <updated>2019-12-31T08:21:17.647Z</updated>
+    <updated>2020-08-04T06:41:34.633Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://brick713.github.io"/>
     <link rel="self" href="https://brick713.github.io/atom.xml"/>
     <subtitle>May The Force Be With You</subtitle>
     <logo>https://brick713.github.io/images/avatar.png</logo>
     <icon>https://brick713.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2019, Brick713 的小黑屋</rights>
+    <rights>All rights reserved 2020, Brick713 的小黑屋</rights>
     <entry>
         <title type="html"><![CDATA[移动端安全修炼（三）]]></title>
-        <id>https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-san</id>
-        <link href="https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-san">
+        <id>https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-san/</id>
+        <link href="https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-san/">
         </link>
         <updated>2019-06-03T14:57:43.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="起因">起因</h2>
+<p>Android 7.0 之后 Google 默认不信任 User 域下的证书，也就是自行导入证书的方式去抓 HTTPS 包的方法已经不管用了，再加上现在大部分 App 都使用了 SSL Pinning，因此抓包的难度也比之前大了不少。此时再想抓 HTTPS 的流量就要用别的方法了。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="起因">起因</h2>
+<p>Android 7.0 之后 Google 默认不信任 User 域下的证书，也就是自行导入证书的方式去抓 HTTPS 包的方法已经不管用了，再加上现在大部分 App 都使用了 SSL Pinning，因此抓包的难度也比之前大了不少。此时再想抓 HTTPS 的流量就要用别的方法了。</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Kubernetes Api Server 未授权访问漏洞]]></title>
-        <id>https://brick713.github.io/post/kubernetes-api-server-wei-shou-quan-fang-wen-lou-dong</id>
-        <link href="https://brick713.github.io/post/kubernetes-api-server-wei-shou-quan-fang-wen-lou-dong">
+        <id>https://brick713.github.io/post/kubernetes-api-server-wei-shou-quan-fang-wen-lou-dong/</id>
+        <link href="https://brick713.github.io/post/kubernetes-api-server-wei-shou-quan-fang-wen-lou-dong/">
         </link>
         <updated>2018-12-05T15:26:12.000Z</updated>
+        <summary type="html"><![CDATA[<h1 id="0x00-漏洞原因">0x00 漏洞原因</h1>
+<p>Kubernetes 的服务在正常启动后会开启两个端口：</p>
+<ol>
+<li>Localhost Port （默认8080）</li>
+<li>Secure Port （默认6443）</li>
+</ol>
+<p>这两个端口都是提供 Api Server 服务的，一个可以直接通过 Web 访问，另一个可以通过 kubectl 客户端进行调用。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h1 id="0x00-漏洞原因">0x00 漏洞原因</h1>
+<p>Kubernetes 的服务在正常启动后会开启两个端口：</p>
+<ol>
+<li>Localhost Port （默认8080）</li>
+<li>Secure Port （默认6443）</li>
+</ol>
+<p>这两个端口都是提供 Api Server 服务的，一个可以直接通过 Web 访问，另一个可以通过 kubectl 客户端进行调用。</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[移动端安全修炼（二）]]></title>
-        <id>https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-er</id>
-        <link href="https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-er">
+        <id>https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-er/</id>
+        <link href="https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-er/">
         </link>
         <updated>2017-10-15T15:12:11.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[浅析DNS反射放大攻击]]></title>
-        <id>https://brick713.github.io/post/qian-xi-dns-fan-she-fang-da-gong-ji</id>
-        <link href="https://brick713.github.io/post/qian-xi-dns-fan-she-fang-da-gong-ji">
+        <id>https://brick713.github.io/post/qian-xi-dns-fan-she-fang-da-gong-ji/</id>
+        <link href="https://brick713.github.io/post/qian-xi-dns-fan-she-fang-da-gong-ji/">
         </link>
         <updated>2016-08-19T15:26:50.000Z</updated>
+        <summary type="html"><![CDATA[<h1 id="dns反射放大攻击分析">DNS反射放大攻击分析</h1>
+<p>前阵子业务上碰到了DDOS攻击，正好是DNS反射型的，之前只是听过，没自己处理过，仔细学习了一番之后做点记录。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h1 id="dns反射放大攻击分析">DNS反射放大攻击分析</h1>
+<p>前阵子业务上碰到了DDOS攻击，正好是DNS反射型的，之前只是听过，没自己处理过，仔细学习了一番之后做点记录。</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[移动端安全修炼（一）]]></title>
-        <id>https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-1</id>
-        <link href="https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-1">
+        <id>https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-1/</id>
+        <link href="https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-1/">
         </link>
         <updated>2016-04-06T15:02:23.000Z</updated>
+        <summary type="html"><![CDATA[<p>新开一个坑，主要是记录自己学习移动端的一些相关知识。从基础到复杂吧，也不知道能写多少。从最开始的环境开始。</p>
+<p>移动端安全和Web差别并不大，也是分为服务端和客户端，只不过客户端换成了一个App，服务端和Web基本一致。因此挖掘服务端端漏洞和Web没有太大差别。重点在于如何挖掘客户端端漏洞，涉及反编译，代码审计，等等。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>新开一个坑，主要是记录自己学习移动端的一些相关知识。从基础到复杂吧，也不知道能写多少。从最开始的环境开始。</p>
+<p>移动端安全和Web差别并不大，也是分为服务端和客户端，只不过客户端换成了一个App，服务端和Web基本一致。因此挖掘服务端端漏洞和Web没有太大差别。重点在于如何挖掘客户端端漏洞，涉及反编译，代码审计，等等。</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[PHPCMS Authkey 泄露漏洞分析]]></title>
-        <id>https://brick713.github.io/post/phpcms-authkey-xie-lu-lou-dong-fen-xi</id>
-        <link href="https://brick713.github.io/post/phpcms-authkey-xie-lu-lou-dong-fen-xi">
+        <id>https://brick713.github.io/post/phpcms-authkey-xie-lu-lou-dong-fen-xi/</id>
+        <link href="https://brick713.github.io/post/phpcms-authkey-xie-lu-lou-dong-fen-xi/">
         </link>
         <updated>2016-03-10T01:30:00.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Nginx安全性能配置&&DDOS防范]]></title>
-        <id>https://brick713.github.io/post/nginx-an-quan-xing-neng-pei-zhi-andddos-fang-fan</id>
-        <link href="https://brick713.github.io/post/nginx-an-quan-xing-neng-pei-zhi-andddos-fang-fan">
+        <id>https://brick713.github.io/post/nginx-an-quan-xing-neng-pei-zhi-andddos-fang-fan/</id>
+        <link href="https://brick713.github.io/post/nginx-an-quan-xing-neng-pei-zhi-andddos-fang-fan/">
         </link>
         <updated>2016-03-09T15:17:00.000Z</updated>
+        <summary type="html"><![CDATA[<!-- more -->
+<p>最近看了一些Nginx的配置的文章主要和性能有关，包括一些安全上的配置，并不对所有设备适用，总结下来觉得有用的可以自取，另外是加深自己对服务器的理解。其中有一些有关DDOS的配置。内容参考了两篇文章和自己的一些安全理解。文章地址如下：</p>
+<p><a href="https://nginx.com/blog/tuning-nginx/">Tuning NGINX for Performance</a></p>
+<p><a href="https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus/">Mitigating DDoS Attacks with NGINX and NGINX Plus</a></p>
+]]></summary>
+        <content type="html"><![CDATA[<!-- more -->
+<p>最近看了一些Nginx的配置的文章主要和性能有关，包括一些安全上的配置，并不对所有设备适用，总结下来觉得有用的可以自取，另外是加深自己对服务器的理解。其中有一些有关DDOS的配置。内容参考了两篇文章和自己的一些安全理解。文章地址如下：</p>
+<p><a href="https://nginx.com/blog/tuning-nginx/">Tuning NGINX for Performance</a></p>
+<p><a href="https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus/">Mitigating DDoS Attacks with NGINX and NGINX Plus</a></p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Linux/BillGates僵尸网络分析]]></title>
-        <id>https://brick713.github.io/post/linuxbillgates-jiang-shi-wang-luo-fen-xi</id>
-        <link href="https://brick713.github.io/post/linuxbillgates-jiang-shi-wang-luo-fen-xi">
+        <id>https://brick713.github.io/post/linuxbillgates-jiang-shi-wang-luo-fen-xi/</id>
+        <link href="https://brick713.github.io/post/linuxbillgates-jiang-shi-wang-luo-fen-xi/">
         </link>
         <updated>2015-11-05T15:08:23.000Z</updated>
+        <summary type="html"><![CDATA[<!--  more  -->
+<h1 id="0x00起因">0x00起因</h1>
+<p>前阵子在用户某台设备上检测到一个IP在向外大量的发送SSH链接请求，而且有大量的DDOS其他IP的嫌疑。很明显这个IP的机器已经被人黑了，自然需要检测原因。于是就一步步开始排查。</p>
+]]></summary>
+        <content type="html"><![CDATA[<!--  more  -->
+<h1 id="0x00起因">0x00起因</h1>
+<p>前阵子在用户某台设备上检测到一个IP在向外大量的发送SSH链接请求，而且有大量的DDOS其他IP的嫌疑。很明显这个IP的机器已经被人黑了，自然需要检测原因。于是就一步步开始排查。</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Wordpress WP All Import插件漏洞分析]]></title>
-        <id>https://brick713.github.io/post/wordpress-wp-all-import-cha-jian-lou-dong-fen-xi</id>
-        <link href="https://brick713.github.io/post/wordpress-wp-all-import-cha-jian-lou-dong-fen-xi">
+        <id>https://brick713.github.io/post/wordpress-wp-all-import-cha-jian-lou-dong-fen-xi/</id>
+        <link href="https://brick713.github.io/post/wordpress-wp-all-import-cha-jian-lou-dong-fen-xi/">
         </link>
         <updated>2015-10-31T13:19:52.000Z</updated>
+        <summary type="html"><![CDATA[<!--more-->
+<h1 id="0x00-插件">0x00 插件</h1>
+<p>Wordpress WP All Import 3.2.3 (Pro 4.0.3)插件主要功能是支持用户上传XML和CSV文件。一般这种支持上传功能的插件最最最危险的地方就是不做文件格式检测，或者是检测方法过弱易被绕过。<br>
+该插件上传的文件可以通过</p>
+<p>http://&quot;+site+&quot;/wp-content/uploads/wpallimport/uploads/&quot;+up_dir+&quot;/ 路径访问。</p>
+]]></summary>
+        <content type="html"><![CDATA[<!--more-->
+<h1 id="0x00-插件">0x00 插件</h1>
+<p>Wordpress WP All Import 3.2.3 (Pro 4.0.3)插件主要功能是支持用户上传XML和CSV文件。一般这种支持上传功能的插件最最最危险的地方就是不做文件格式检测，或者是检测方法过弱易被绕过。<br>
+该插件上传的文件可以通过</p>
+<p>http://&quot;+site+&quot;/wp-content/uploads/wpallimport/uploads/&quot;+up_dir+&quot;/ 路径访问。</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Tomcat Manager 后台漏洞分析]]></title>
-        <id>https://brick713.github.io/post/tomcat-manager-hou-tai-lou-dong-fen-xi</id>
-        <link href="https://brick713.github.io/post/tomcat-manager-hou-tai-lou-dong-fen-xi">
+        <id>https://brick713.github.io/post/tomcat-manager-hou-tai-lou-dong-fen-xi/</id>
+        <link href="https://brick713.github.io/post/tomcat-manager-hou-tai-lou-dong-fen-xi/">
         </link>
         <updated>2015-10-22T13:19:52.000Z</updated>
     </entry>
