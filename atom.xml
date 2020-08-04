@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://brick713.github.io</id>
     <title>Brick713 的小黑屋</title>
-    <updated>2020-08-04T06:42:28.182Z</updated>
+    <updated>2020-08-04T06:44:08.687Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://brick713.github.io"/>
     <link rel="self" href="https://brick713.github.io/atom.xml"/>
@@ -52,6 +52,12 @@
         <link href="https://brick713.github.io/post/yi-dong-duan-an-quan-xiu-lian-er/">
         </link>
         <updated>2017-10-15T15:12:11.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="前因">前因</h2>
+<p>iOS针对IAP有一个保护机制，如果使用了全局代理的方式，iOS检查到之后为了保障交易的安全性，将会拒绝IAP流程，所以是无法抓取交易数据的，以豆瓣阅读为例，未开启代理时，可以正常的进入IAP充值界面，开启代理后则会报错：</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="前因">前因</h2>
+<p>iOS针对IAP有一个保护机制，如果使用了全局代理的方式，iOS检查到之后为了保障交易的安全性，将会拒绝IAP流程，所以是无法抓取交易数据的，以豆瓣阅读为例，未开启代理时，可以正常的进入IAP充值界面，开启代理后则会报错：</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[浅析DNS反射放大攻击]]></title>
@@ -85,6 +91,32 @@
         <link href="https://brick713.github.io/post/phpcms-authkey-xie-lu-lou-dong-fen-xi/">
         </link>
         <updated>2016-03-10T01:30:00.000Z</updated>
+        <summary type="html"><![CDATA[<h1 id="phpcms-v9-authkey泄露漏洞">PHPCMS V9 Authkey泄露漏洞</h1>
+<p>在PHPCMS V9的版本中（现已修复）</p>
+<p><code>phpcms/phpsso\_server/phpcms/modules/phpsso/index.php</code></p>
+<p>中有一段代码如下：</p>
+<pre><code>/**
+* 获取应用列表
+*/
+    public function getapplist() {
+        $applist = getcache('applist', 'admin');
+        exit(serialize($applist));
+        }
+</code></pre>
+]]></summary>
+        <content type="html"><![CDATA[<h1 id="phpcms-v9-authkey泄露漏洞">PHPCMS V9 Authkey泄露漏洞</h1>
+<p>在PHPCMS V9的版本中（现已修复）</p>
+<p><code>phpcms/phpsso\_server/phpcms/modules/phpsso/index.php</code></p>
+<p>中有一段代码如下：</p>
+<pre><code>/**
+* 获取应用列表
+*/
+    public function getapplist() {
+        $applist = getcache('applist', 'admin');
+        exit(serialize($applist));
+        }
+</code></pre>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Nginx安全性能配置&&DDOS防范]]></title>
@@ -143,5 +175,13 @@
         <link href="https://brick713.github.io/post/tomcat-manager-hou-tai-lou-dong-fen-xi/">
         </link>
         <updated>2015-10-22T13:19:52.000Z</updated>
+        <summary type="html"><![CDATA[<h1 id="0x00-起源">0x00 起源</h1>
+<p>之前分析某设备被入侵，一直没查出来攻击者是怎么黑掉设备的，于是对着设备一通分析。结果发现了另外一条黑进去的方法。。。当然最好是弄清楚了实际原因，附带给把这个意外的漏洞给修了，回去研究发现原因很简单。</p>
+<p>顺带一提，漏洞形成的原因虽然是Tomcat本身的原因，但是开发公司各种糟糕的配置是把该问题放大的帮凶。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h1 id="0x00-起源">0x00 起源</h1>
+<p>之前分析某设备被入侵，一直没查出来攻击者是怎么黑掉设备的，于是对着设备一通分析。结果发现了另外一条黑进去的方法。。。当然最好是弄清楚了实际原因，附带给把这个意外的漏洞给修了，回去研究发现原因很简单。</p>
+<p>顺带一提，漏洞形成的原因虽然是Tomcat本身的原因，但是开发公司各种糟糕的配置是把该问题放大的帮凶。</p>
+]]></content>
     </entry>
 </feed>

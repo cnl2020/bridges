@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1596523346750">
+<link rel="shortcut icon" href="https://brick713.github.io/favicon.ico?v=1596523446744">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://brick713.github.io/styles/main.css">
 
@@ -39,7 +39,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://brick713.github.io">
-        <img src="https://brick713.github.io/images/avatar.png?v=1596523346750" class="site-logo">
+        <img src="https://brick713.github.io/images/avatar.png?v=1596523446744" class="site-logo">
         <h1 class="site-title">Brick713 的小黑屋</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -126,8 +126,7 @@
                   2015-09-21
                 </div>
                 <div class="post-abstract">
-                  <!-- more -->
-<h1 id="0x00-漏洞描述">0x00 漏洞描述</h1>
+                  <h1 id="0x00-漏洞描述">0x00 漏洞描述</h1>
 <p>在PHPCMS V9版本（最新版本）的登录功能中，存在SQL注入漏洞，登录界面通过POST传入的data内容，解析其中的内容会作为注册、登陆、删除用户等操作的内容依据，而这些操作都会将这些数据作为数据库查询语句使用。因为代码没有做过滤，攻击者可以利用POST内容进行SQL注入。</p>
 
                 </div>
@@ -171,8 +170,7 @@
                   2015-06-15
                 </div>
                 <div class="post-abstract">
-                  <!-- more -->
-<h1 id="安全配置小记">安全配置小记</h1>
+                  <h1 id="安全配置小记">安全配置小记</h1>
 <p>最近接触到要配置服务器安全，所有上网查了一堆关于服务器配置的内容，收益最大的还是<strong>Wooyun</strong>的两篇关于Nginx和Apache的安全配置的文章，这里综合自己的查找的内容作了一点总结，方便自己以后配置服务器。</p>
 <p>下面就讲述下一些相关的安全配置。</p>
 
@@ -195,8 +193,7 @@
                   2015-06-11
                 </div>
                 <div class="post-abstract">
-                  <!-- more -->
-<h1 style="font-size: 2.6em; margin: 1.2em 0 .6em 0; font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; text-align: start;">Ubuntu Server 配置小记</h1>
+                  <h1 style="font-size: 2.6em; margin: 1.2em 0 .6em 0; font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; text-align: start;">Ubuntu Server 配置小记</h1>
 <p style="margin: 0 0 1.1em; line-height: 1.6;">Ubuntu用了很久了每次要配置的时候就经常要上网查看各种信息，不仅麻烦还有N多的不靠谱，现在自己写一个方便以后自己使用。这里必须强调的是使用的版本是</p>
 <blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
   <p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 0; line-height: 1.6;">Ubuntu Server 10.04</p>
