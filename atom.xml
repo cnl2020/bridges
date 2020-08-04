@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://brick713.github.io</id>
     <title>Brick713 的小黑屋</title>
-    <updated>2020-08-04T06:44:08.687Z</updated>
+    <updated>2020-08-04T06:46:24.943Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://brick713.github.io"/>
     <link rel="self" href="https://brick713.github.io/atom.xml"/>
@@ -95,27 +95,11 @@
 <p>在PHPCMS V9的版本中（现已修复）</p>
 <p><code>phpcms/phpsso\_server/phpcms/modules/phpsso/index.php</code></p>
 <p>中有一段代码如下：</p>
-<pre><code>/**
-* 获取应用列表
-*/
-    public function getapplist() {
-        $applist = getcache('applist', 'admin');
-        exit(serialize($applist));
-        }
-</code></pre>
 ]]></summary>
         <content type="html"><![CDATA[<h1 id="phpcms-v9-authkey泄露漏洞">PHPCMS V9 Authkey泄露漏洞</h1>
 <p>在PHPCMS V9的版本中（现已修复）</p>
 <p><code>phpcms/phpsso\_server/phpcms/modules/phpsso/index.php</code></p>
 <p>中有一段代码如下：</p>
-<pre><code>/**
-* 获取应用列表
-*/
-    public function getapplist() {
-        $applist = getcache('applist', 'admin');
-        exit(serialize($applist));
-        }
-</code></pre>
 ]]></content>
     </entry>
     <entry>
